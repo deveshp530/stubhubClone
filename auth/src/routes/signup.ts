@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
-import { BadRequestError } from "../errors/bad-request-error";
-import { validateRequest } from "../middleware/validate-requests";
+import { BadRequestError, validateRequest } from "@stubhubclone/common";
 import jwt from "jsonwebtoken";
 
 import { User } from "../models/user";
