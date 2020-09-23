@@ -6,14 +6,14 @@ interface TicketAttrs {
   userId: string;
 }
 
-interface TicketModel extends mongoose.Model<TicketDoc> {
-  build(attrs: TicketAttrs): TicketDoc;
-}
-
 interface TicketDoc extends mongoose.Document {
-  title: string;
+  title: number;
   price: number;
   userId: string;
+}
+
+interface TicketModel extends mongoose.Model<TicketDoc> {
+  build(attrs: TicketAttrs): TicketDoc;
 }
 
 const ticketSchema = new mongoose.Schema(

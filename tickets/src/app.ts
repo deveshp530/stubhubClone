@@ -5,7 +5,9 @@ import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError, currentUser } from "@stubhubclone/common";
 
 import { createTicketRouter } from "./routes/newTicket";
-import { showTicketRouter } from "./routes/showTicket";
+import { showTicketRouter } from './routes/showTicket'
+import { indexRouter } from "./routes/index";
+import { updateRouter } from "./routes/updateTicket";
 
 const app = express();
 app.set("trust proxy", true);
@@ -21,6 +23,8 @@ app.use(currentUser);
 
 app.use(createTicketRouter);
 app.use(showTicketRouter);
+app.use(indexRouter);
+app.use(updateRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();
