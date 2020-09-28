@@ -10,6 +10,7 @@ router.get("/api/tickets/:id", async (req: Request, res: Response) => {
   if (!ticket) {
     throw new NotFoundError();
   }
+
   res.send(ticket);
 });
 

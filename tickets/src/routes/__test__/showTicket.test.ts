@@ -16,13 +16,13 @@ it("returns the ticket if the ticket is found", async () => {
     .post("/api/tickets")
     .set("Cookie", global.signin())
     .send({ title, price })
-    expect(201);
+    .expect(201);
 
   const ticketRes = await request(app)
     .get(`/api/tickets/${res.body.id}`)
     .send()
-    expect(200);
+    .expect(200);
 
-  // expect(ticketRes.body.title).toBe(title);
-  // expect(ticketRes.body.price).toBe(price);
+  expect(ticketRes.body.title).toEqual(title);
+  expect(ticketRes.body.price).toEqual(price);
 });

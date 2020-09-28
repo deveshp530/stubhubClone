@@ -1,6 +1,6 @@
 auth/node_modules
 client/node_modules
-
 common
-
 tickets/node_modules
+nats-test/node_modules
+
