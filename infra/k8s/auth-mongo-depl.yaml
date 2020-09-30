@@ -12,7 +12,7 @@ spec:
       labels:
         app: auth-mongo
     spec:
-      containers: 
+      containers:
         - name: auth-mongo
           image: mongo
 ---
