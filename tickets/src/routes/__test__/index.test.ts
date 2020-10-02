@@ -4,6 +4,7 @@ import { Ticket } from "../../models/tickets";
 import { createTicketRouter } from "../newTicket";
 import { response } from "express";
 
+
 const createTicket = () => {
   return request(app).post("/api/tickets").set("Cookie", global.signin()).send({
     title: 'fsadfsa',
