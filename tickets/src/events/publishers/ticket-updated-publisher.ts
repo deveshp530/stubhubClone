@@ -1,5 +1,5 @@
-import { Publisher, Subjects, TicketCreatedUpdated } from '@stubhubclone/common';
+import { Publisher, Subjects, TicketUpdatedEvent } from '@stubhubclone/common';
 
-export class TicketUpdatedPublisher extends Publisher<TicketCreatedUpdated> {
+export class TicketUpdatedPublisher extends Publisher<TicketUpdatedEvent> {
   subject: Subjects.TicketUpdated = Subjects.TicketUpdated;
 }

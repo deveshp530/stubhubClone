@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
-import { TicketDoc } from "./Ticket";
-
 import { OrderStatus } from "@stubhubclone/common";
+import { TicketDoc } from "./Ticket";
 
 export { OrderStatus };
 
@@ -23,8 +22,12 @@ interface OrderModel extends mongoose.Model<OrderDoc> {
   build(attrs: OrderAttrs): OrderDoc;
 }
 
-const orderschema = new mongoose.Schema(
+const orderSchema = new mongoose.Schema(
   {
+    userId: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
       required: true,
@@ -33,10 +36,6 @@ const orderschema = new mongoose.Schema(
     },
     expiresAt: {
       type: mongoose.Schema.Types.Date,
-    },
-    userId: {
-      type: String,
-      required: true,
     },
     ticket: {
       type: mongoose.Schema.Types.ObjectId,
@@ -53,10 +52,10 @@ const orderschema = new mongoose.Schema(
   }
 );
 
-orderschema.statics.build = (attrs: OrderAttrs) => {
-  return new Orders(attrs);
+orderSchema.statics.build = (attrs: OrderAttrs) => {
+  return new Order(attrs);
 };
 
-const Order = mongoose.model<OrderDoc, OrderModel>("Orders", orderschema);
+const Order = mongoose.model<OrderDoc, OrderModel>("Order", orderSchema);
 
 export { Order };
