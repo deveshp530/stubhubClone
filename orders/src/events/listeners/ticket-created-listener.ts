@@ -1,9 +1,9 @@
 import { Message } from "node-nats-streaming";
-import { Ticket } from "../../../models/Ticket";
+import { Ticket } from "../../models/Ticket";
 import { Subjects, Listener, TicketCreatedEvent } from "@stubhubclone/common";
 import { queueGroupName } from "./queue-group-name";
 
-export class TickerCreatedListener extends Listener<TicketCreatedEvent> {
+export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
   subject: Subjects.TicketCreated = Subjects.TicketCreated;
   queueGroupName = queueGroupName;
 

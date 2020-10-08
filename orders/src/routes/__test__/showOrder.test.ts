@@ -1,11 +1,12 @@
 import request from "supertest";
 import { app } from "../../app";
 import { Ticket } from "../../models/Ticket";
+import mongoose from "mongoose";
 
 it("fetches the order", async () => {
   //create ticket
-
   const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId().toHexString(),
     title: "dafsdf",
     price: 34,
   });
@@ -14,7 +15,6 @@ it("fetches the order", async () => {
 
   const user = global.signin();
   //make request to build an order with this ticket
-
   const { body: order } = await request(app)
     .post("/api/orders")
     .set("Cookie", user)
@@ -35,6 +35,7 @@ it("returne an error if one user orders anothers ticket", async () => {
   //create ticket
 
   const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId().toHexString(),
     title: "dafsdf",
     price: 34,
   });
@@ -44,7 +45,6 @@ it("returne an error if one user orders anothers ticket", async () => {
   const user = global.signin();
 
   //make request to build an order with this ticket
-
   const { body: order } = await request(app)
     .post("/api/orders")
     .set("Cookie", user)

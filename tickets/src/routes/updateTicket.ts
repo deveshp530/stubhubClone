@@ -5,6 +5,7 @@ import {
   NotFoundError,
   requireAuth,
   NotAuthorizedError,
+  BadRequestError,
 } from "@stubhubclone/common";
 import { Ticket } from "../models/tickets";
 
@@ -28,6 +29,9 @@ router.put(
 
     if (!ticket) {
       throw new NotFoundError();
+    }
+    if(ticket.orderId){
+      throw new BadRequestError('Cannot edit a reserved ticket')
     }
 
     if (ticket.userId !== req.currentUser!.id) {
