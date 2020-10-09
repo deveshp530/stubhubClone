@@ -3,7 +3,6 @@ import { Ticket } from "../../models/tickets";
 import { Subjects, Listener, OrderCreatedEvent } from "@stubhubclone/common";
 import { queueGroupName } from "./queue-group-name";
 import { TicketUpdatedPublisher } from "../publishers/ticket-updated-publisher";
-import mongoose from "mongoose";
 
 export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
   subject: Subjects.OrderCreated = Subjects.OrderCreated;
