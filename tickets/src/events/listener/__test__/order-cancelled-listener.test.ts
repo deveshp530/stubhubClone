@@ -25,7 +25,6 @@ const setUp = async () => {
     version: 0,
     ticket: {
       id: ticket.id,
-      price: ticket.price,
     },
   };
 

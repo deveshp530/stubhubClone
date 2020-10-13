@@ -1,37 +1,35 @@
 import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
 import { OrderCreatedEvent, OrderStatus } from "@stubhubclone/common";
-import { OrderCreatedListener } from "../order-created-listener";
 import { natsWrapper } from "../../../nats-wrapper";
+import { OrderCreatedListener } from "../order-created-listener";
 import { Order } from "../../../models/Order";
 
-const setUp = async () => {
-  //create instance of listener
+const setup = async () => {
   const listener = new OrderCreatedListener(natsWrapper.client);
 
-  //create a fake data event
   const data: OrderCreatedEvent["data"] = {
     id: mongoose.Types.ObjectId().toHexString(),
     version: 0,
-    expiresAt: "fdsfas",
-    userId: "fasfas",
+    expiresAt: "alskdjf",
+    userId: "alskdjf",
     status: OrderStatus.Created,
     ticket: {
-      id: "fdsfa",
-      price: 20,
+      id: "alskdfj",
+      price: 10,
     },
   };
 
-  //create fake message object
-  //@ts-ignore
+  // @ts-ignore
   const msg: Message = {
     ack: jest.fn(),
   };
+
   return { listener, data, msg };
 };
 
-it("replicates order info", async () => {
-  const { listener, data, msg } = await setUp();
+it("replicates the order info", async () => {
+  const { listener, data, msg } = await setup();
 
   await listener.onMessage(data, msg);
 
@@ -40,8 +38,8 @@ it("replicates order info", async () => {
   expect(order!.price).toEqual(data.ticket.price);
 });
 
-it("acks the msg", async () => {
-  const { listener, data, msg } = await setUp();
+it("acks the message", async () => {
+  const { listener, data, msg } = await setup();
 
   await listener.onMessage(data, msg);
 
