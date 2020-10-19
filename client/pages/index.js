@@ -1,22 +1,44 @@
-import buildClient from "../api/build-client";
+import Link from "next/link";
 
-const LandingPage = ({ currentUser }) => {
-  return currentUser ? (
-    //change to name when it is added to models
-    <h3>Welcome {currentUser.email}</h3>
-  ) : (
-    <h1>Please sign in or signup</h1>
+const LandingPage = ({ currentUser, tickets }) => {
+  const ticketList = tickets.map((ticket) => {
+    return (
+      <tr key={ticket.id}>
+        <td>{ticket.title}</td>
+        <td>{ticket.price}</td>
+        <td>
+          <Link href="/tickets/[ticketid]" as={`/tickets/${ticket.id}`}>
+            <a>View</a>
+          </Link>
+        </td>
+      </tr>
+    );
+  });
+
+  return (
+    <div>
+      <h1>Tickets</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Link to Ticket</th>
+          </tr>
+        </thead>
+        <tbody>{ticketList}</tbody>
+      </table>
+    </div>
   );
 };
 
 //getIntitlProps:sending the page with the data already populated
 //from the server
 
-LandingPage.getInitialProps = async (context) => {
-  const client = buildClient(context);
-  const { data } = await client.get("/api/users/currentuser");
+LandingPage.getInitialProps = async (context, client, currentUser) => {
+  const { data } = await client.get("/api/tickets");
 
-  return data;
+  return { tickets: data };
 };
 
 export default LandingPage;
