@@ -22,7 +22,6 @@ const setup = async () => {
     version: 1,
     ticket: {
       id: "asldkfj",
-      price: 20,
     },
   };
 
