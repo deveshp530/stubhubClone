@@ -7,6 +7,8 @@ deploy:
 build:
   local:
     push: false
+  # googleCloudBuild:
+  #   projectId: stubhubclone
   artifacts:
     - image: deveshp530/auth
       context: auth
