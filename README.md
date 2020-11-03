@@ -1,6 +1,6 @@
 # StubHubClone
 
-A mock of the stubhub website. Microservice based architecture with event streaming using NATS.Built with Typescript, Express, MongoDB, Docker, Kubernetes, and NextJS
+A mock of the stubhub website. Microservice based architecture with event streaming using NATS.Built with Typescript, Express, MongoDB, Docker, Kubernetes
 
 ## Purpose
 
