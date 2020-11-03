@@ -49,12 +49,12 @@ NodeJS, Skaffold
 
 In terminal
 
-'''
+```
 git clone https://github.com/deveshp530/stubhubClone.git
 
 cd stubhubClone
 
 skaffold dev
-'''
+```
 
 Navigate to tickets.dev and type in 'thisisunsafe' in the window to access application. This will not expose any data since the website is on your local machine
